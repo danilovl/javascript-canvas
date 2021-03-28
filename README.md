@@ -13,6 +13,7 @@ More information is available in the examples folders.
 
 ### Examples ###
 
+* Moving particles animation
 * Sea battle game
 
 ## Author ###  
