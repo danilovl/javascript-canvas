@@ -4,7 +4,7 @@
 
 Sea Battle is a strategy type guessing game for two players.
 
-![Alt text](/git/sea-battle-screen.png?raw=true)
+![Alt text](/sea-battle/git/sea-battle-screen.png?raw=true)
 
 ### Opponent  ###
 
