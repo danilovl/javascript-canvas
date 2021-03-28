@@ -16,4 +16,4 @@ Your opponent will be a simple bot.
  
 ## Author ###  
 
-Created by [Vladimir Danilov](https://github.com/danilovl).
+Created by [Vladimir Danilov](https://github.com/danilovl)

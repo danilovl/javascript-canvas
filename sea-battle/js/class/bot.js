@@ -1,6 +1,5 @@
 import {getPossibleShipsByLength, getTargetSuccessDirectionPoints} from '../util/point.js';
 import {arrayFindIndexPoint, arrayRandomItem, arrayRemoveByIndex} from '../util/array.js';
-import {SHIPS} from '../constant/constant.js';
 
 export default class Bot {
     constructor(playerOne) {
