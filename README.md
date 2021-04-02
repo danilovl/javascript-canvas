@@ -13,6 +13,7 @@ More information is available in the examples folders.
 
 ### Examples ###
 
+* Simple 2d dynamic lighting simulation
 * Moving particles animation
 * Sea battle game
 
