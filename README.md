@@ -14,6 +14,7 @@ More information is available in the examples folders.
 ### Examples ###
 
 * 2D dynamic simple lighting simulation
+* 3D cube
 * 3D simple wave animation
 * Moving particles animation
 * Sea battle game
