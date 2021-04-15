@@ -1,10 +1,10 @@
-import Canvas from './canvas.js';
+import CanvasUtil from '../util/canvas-util.js';
 import Square from './square.js';
 import Point from './point.js';
 
 export default class Draw {
     constructor(idCanvas, config) {
-        this.canvas = new Canvas(idCanvas);
+        this.canvasUtil = new CanvasUtil(idCanvas);
         this.config = config;
         this.squares = [];
         this.waveHeight = config.WAVE.waveHeight;
@@ -27,11 +27,11 @@ export default class Draw {
     }
 
     initParameters() {
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight;
+        this.canvasUtil.width = window.innerWidth;
+        this.canvasUtil.height = window.innerHeight;
 
-        this.increaseCanvasWidth = this.canvas.width * 2.5;
-        this.increaseCanvasHeight = this.canvas.height;
+        this.increaseCanvasWidth = this.canvasUtil.width * 2.5;
+        this.increaseCanvasHeight = this.canvasUtil.height;
 
         this.cols = this.increaseCanvasWidth / this.squareWidth;
         this.rows = this.increaseCanvasHeight / this.squareHeight;
@@ -52,8 +52,8 @@ export default class Draw {
     }
 
     onResize() {
-        this.canvas.canvas.setAttribute('width', window.innerWidth);
-        this.canvas.canvas.setAttribute('height', window.innerHeight);
+        this.canvasUtil.canvas.setAttribute('width', window.innerWidth);
+        this.canvasUtil.canvas.setAttribute('height', window.innerHeight);
 
         this.initParameters();
         this.initSquares();
@@ -107,7 +107,7 @@ export default class Draw {
         let vertices = square.vertices;
         for (let i = 0; i < vertices.length; i++) {
             let point = vertices[i];
-            if (point.x > -waveHeight && point.x < this.canvas.width + waveHeight && point.y > -waveHeight && point.y < this.canvas.height + waveHeight) {
+            if (point.x > -waveHeight && point.x < this.canvasUtil.width + waveHeight && point.y > -waveHeight && point.y < this.canvasUtil.height + waveHeight) {
                 return false;
             }
         }
@@ -160,7 +160,7 @@ export default class Draw {
     startDrawing() {
         window.requestAnimationFrame(this.startDrawing.bind(this));
 
-        this.canvas.clear();
+        this.canvasUtil.clear();
 
         this.offsetX += this.speedOffsetX;
         this.offsetY -= this.speedffsetY;
@@ -168,7 +168,7 @@ export default class Draw {
         this.transformGrid();
         this.addNoise(this.offsetX, this.offsetY);
 
-        let context = this.canvas.context;
+        let context = this.canvasUtil.context;
         context.strokeStyle = this.config.COLOR.waveStroke;
 
         for (let i = 0; i < this.squares.length; i++) {

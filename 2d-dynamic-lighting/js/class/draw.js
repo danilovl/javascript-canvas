@@ -1,4 +1,4 @@
-import Canvas from './canvas.js';
+import CanvasUtil from '../util/canvas-util.js';
 import Block from './block.js';
 import Point from './point.js';
 import Ray from './ray.js';
@@ -9,7 +9,7 @@ import {isIntersectionBlocks, getRayAreaBlock} from '../util/block.js';
 
 export default class Draw {
     constructor(idCanvas, config) {
-        this.canvas = new Canvas(idCanvas);
+        this.canvasUtil = new CanvasUtil(idCanvas);
         this.config = config;
         this.blocks = [];
         this.mousePos = {x: 500, y: 500};
@@ -27,14 +27,14 @@ export default class Draw {
     }
 
     onResize() {
-        this.canvas.canvas.setAttribute('width', window.innerWidth);
-        this.canvas.canvas.setAttribute('height', window.innerHeight);
+        this.canvasUtil.canvas.setAttribute('width', window.innerWidth);
+        this.canvasUtil.canvas.setAttribute('height', window.innerHeight);
 
         this.initBlocks();
     }
 
     onMouseMove(evt) {
-        this.mousePos = getMousePos(this.canvas.canvas, evt);
+        this.mousePos = getMousePos(this.canvasUtil.canvas, evt);
         this.startDrawing();
     }
 
@@ -45,8 +45,8 @@ export default class Draw {
         let count = this.config.BLOCK.numBlocks;
 
         while (id < count) {
-            let x = arrayRandomBetween(0, this.canvas.canvas.width);
-            let y = arrayRandomBetween(0, this.canvas.canvas.height);
+            let x = arrayRandomBetween(0, this.canvasUtil.canvas.width);
+            let y = arrayRandomBetween(0, this.canvasUtil.canvas.height);
             let width = arrayRandomBetween(this.config.BLOCK.minWidth, this.config.BLOCK.maxWidth);
             let height = arrayRandomBetween(this.config.BLOCK.minHeight, this.config.BLOCK.maxHeight);
 
@@ -67,7 +67,7 @@ export default class Draw {
     }
 
     drawBlocksRect(block) {
-        let context = this.canvas.context;
+        let context = this.canvasUtil.context;
 
         context.beginPath();
         context.strokeStyle = this.config.COLOR.blockNotVisible;
@@ -77,7 +77,7 @@ export default class Draw {
     }
 
     drawBlocksFillRect() {
-        let context = this.canvas.context;
+        let context = this.canvasUtil.context;
 
         for (let i = 0; i < this.blocks.length; i++) {
             let block = this.blocks[i];
@@ -91,15 +91,15 @@ export default class Draw {
     }
 
     startDrawing() {
-        this.canvas.clear();
+        this.canvasUtil.clear();
         this.resetBlocks();
 
-        let context = this.canvas.context;
+        let context = this.canvasUtil.context;
         let colorConfig = this.config.COLOR;
         let radius = this.config.RAY.width;
 
         context.fillStyle = "#000000";
-        context.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        context.fillRect(0, 0, this.canvasUtil.width, this.canvasUtil.height);
 
         let angle = 180;
         let curAngle = angle - 360 / 2;
@@ -123,7 +123,7 @@ export default class Draw {
     }
 
     calculateRayPoint(ray) {
-        let context = this.canvas.context;
+        let context = this.canvasUtil.context;
 
         let rayStartX = ray.startPoint.x;
         let rayStartY = ray.startPoint.y;

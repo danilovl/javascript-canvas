@@ -1,4 +1,4 @@
-export default class Canvas {
+export default class CanvasUtil {
     constructor(id) {
         this.canvas = document.getElementById(id);
         this.canvas.setAttribute('width', window.innerWidth);
