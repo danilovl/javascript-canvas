@@ -18,6 +18,7 @@ More information is available in the examples folders.
 * 3D simple wave animation
 * Moving particles animation
 * Sea battle game
+* Three.js sunlight on earth animation
 
 ## Author ###  
 
