@@ -19,6 +19,7 @@ More information is available in the examples folders.
 * Moving particles animation
 * Sea battle game
 * Three.js sunlight on earth animation
+* Snake game
 
 ## Author ###  
 
