@@ -40,7 +40,7 @@ export default class ShipPositionMove {
         e.preventDefault();
         e.stopPropagation();
 
-        let mousePos = getMousePos(this.playerCanvas.canvas, e);
+        const mousePos = getMousePos(this.playerCanvas.canvas, e);
         this.mouseDownPoint = coordsToCell(mousePos.x, mousePos.y);
 
         this.indexDragShip = arrayFindIndexPointShips(this.mouseDownPoint, this.player.ships);
@@ -50,8 +50,8 @@ export default class ShipPositionMove {
 
         this.canDrag = true;
 
-        let ship = this.player.ships[this.indexDragShip];
-        let aroundShipPoint = getAreaAroundShipPoint(ship)
+        const ship = this.player.ships[this.indexDragShip];
+        const aroundShipPoint = getAreaAroundShipPoint(ship)
 
         this.drawAroundShipPoint(aroundShipPoint);
         this.drawPlayerShips(this.player.ships);
@@ -77,19 +77,19 @@ export default class ShipPositionMove {
             return;
         }
 
-        let mousePos = getMousePos(this.playerCanvas.canvas, evt);
-        let newPoint = coordsToCell(mousePos.x, mousePos.y);
+        const mousePos = getMousePos(this.playerCanvas.canvas, evt);
+        const newPoint = coordsToCell(mousePos.x, mousePos.y);
         if (isPointOutside(newPoint)) {
             return;
         }
 
         let ship = this.player.ships[this.indexDragShip];
-        let allPlayerShipsPoint = this.player.getAllShipPoints();
-        let pointsExceptActualShip = filterExceptPoints(allPlayerShipsPoint, ship.points)
+        const allPlayerShipsPoint = this.player.getAllShipPoints();
+        const pointsExceptActualShip = filterExceptPoints(allPlayerShipsPoint, ship.points)
 
         ship = moveShipPoints(this.mouseDownPoint, newPoint, ship);
-        let aroundShipPoint = getAreaAroundShipPoint(ship)
-        let aroundShipPointWithShip = [...aroundShipPoint, ...ship.points];
+        const aroundShipPoint = getAreaAroundShipPoint(ship)
+        const aroundShipPointWithShip = [...aroundShipPoint, ...ship.points];
 
         if (isPointIntersects(aroundShipPointWithShip, pointsExceptActualShip)) {
             return;
@@ -109,21 +109,21 @@ export default class ShipPositionMove {
         evt.preventDefault();
         evt.stopPropagation();
 
-        let mousePos = getMousePos(this.playerCanvas.canvas, evt);
-        let point = coordsToCell(mousePos.x, mousePos.y);
-        let indexShip = arrayFindIndexPointShips(point, this.player.ships);
+        const mousePos = getMousePos(this.playerCanvas.canvas, evt);
+        const point = coordsToCell(mousePos.x, mousePos.y);
+        const indexShip = arrayFindIndexPointShips(point, this.player.ships);
 
         if (isPointOutside(point) || indexShip === -1) {
             return;
         }
 
         let ship = this.player.ships[indexShip];
-        let allPlayerShipsPoint = this.player.getAllShipPoints();
-        let pointsExceptActualShip = filterExceptPoints(allPlayerShipsPoint, ship.points)
+        const allPlayerShipsPoint = this.player.getAllShipPoints();
+        const pointsExceptActualShip = filterExceptPoints(allPlayerShipsPoint, ship.points)
 
         ship = flipShipPoints(point, ship);
-        let aroundShipPoint = getAreaAroundShipPoint(ship)
-        let aroundShipPointWithShip = [...aroundShipPoint, ...ship.points];
+        const aroundShipPoint = getAreaAroundShipPoint(ship)
+        const aroundShipPointWithShip = [...aroundShipPoint, ...ship.points];
 
         if (isPointIntersects(aroundShipPointWithShip, pointsExceptActualShip)) {
             return;

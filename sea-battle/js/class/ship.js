@@ -7,7 +7,7 @@ export default class Ship {
 
     hasPoint(targetPoint) {
         for (let i = 0; i < this.points.length; i++) {
-            let point = this.points[i];
+            const point = this.points[i];
             if (point.isEqual(targetPoint)) {
                 return true;
             }
@@ -21,8 +21,8 @@ export default class Ship {
     }
 
     getPositionName() {
-        let isVertical = this.points.every((item) => item.x === this.points[0].x);
-        let isHorizontal = this.points.every((item) => item.y === this.points[0].y);
+        const isVertical = this.points.every((item) => item.x === this.points[0].x);
+        const isHorizontal = this.points.every((item) => item.y === this.points[0].y);
 
         if (isVertical && isHorizontal) {
             return POSITION.both;
@@ -37,7 +37,7 @@ export default class Ship {
         }
 
         for (let i = 0; i < this.points.length; i++) {
-            let point = this.points[i];
+            const point = this.points[i];
             if (point.isHit) {
                 continue;
             }
@@ -51,7 +51,7 @@ export default class Ship {
     }
 
     clone() {
-        let ship = Object.assign(Object.create(Object.getPrototypeOf(this)), this);
+        const ship = Object.assign(Object.create(Object.getPrototypeOf(this)), this);
         ship.points = this.points.map(point => point.clone());
 
         return ship;

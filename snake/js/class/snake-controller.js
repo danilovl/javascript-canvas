@@ -58,7 +58,7 @@ export default class SnakeController {
             return;
         }
 
-        let opposite = DIRECTION_OPPOSITE[this.direction];
+        const opposite = DIRECTION_OPPOSITE[this.direction];
         if (opposite === keyName) {
             return;
         }
@@ -118,8 +118,8 @@ export default class SnakeController {
     }
 
     checkGameOver() {
-        let first = this.snake[this.snake.length - 1];
-        let snake = this.snake.slice(0, this.snake.length - 1);
+        const first = this.snake[this.snake.length - 1];
+        const snake = this.snake.slice(0, this.snake.length - 1);
 
         if (isPointInSnake(snake, first)) {
             this.isGameOver = true;

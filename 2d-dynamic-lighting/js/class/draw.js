@@ -45,13 +45,13 @@ export default class Draw {
         let count = this.config.BLOCK.numBlocks;
 
         while (id < count) {
-            let x = arrayRandomBetween(0, this.canvasUtil.canvas.width);
-            let y = arrayRandomBetween(0, this.canvasUtil.canvas.height);
-            let width = arrayRandomBetween(this.config.BLOCK.minWidth, this.config.BLOCK.maxWidth);
-            let height = arrayRandomBetween(this.config.BLOCK.minHeight, this.config.BLOCK.maxHeight);
+            const x = arrayRandomBetween(0, this.canvasUtil.canvas.width);
+            const y = arrayRandomBetween(0, this.canvasUtil.canvas.height);
+            const width = arrayRandomBetween(this.config.BLOCK.minWidth, this.config.BLOCK.maxWidth);
+            const height = arrayRandomBetween(this.config.BLOCK.minHeight, this.config.BLOCK.maxHeight);
 
-            let point = new Point(x, y);
-            let block = new Block(id, point, width, height);
+            const point = new Point(x, y);
+            const block = new Block(id, point, width, height);
 
             this.blocks.push(block);
 
@@ -61,13 +61,13 @@ export default class Draw {
 
     resetBlocks() {
         for (let i = 0; i < this.blocks.length; i++) {
-            let block = this.blocks[i];
+            const block = this.blocks[i];
             block.visible = false;
         }
     }
 
     drawBlocksRect(block) {
-        let context = this.canvasUtil.context;
+        const context = this.canvasUtil.context;
 
         context.beginPath();
         context.strokeStyle = this.config.COLOR.blockNotVisible;
@@ -77,10 +77,10 @@ export default class Draw {
     }
 
     drawBlocksFillRect() {
-        let context = this.canvasUtil.context;
+        const context = this.canvasUtil.context;
 
         for (let i = 0; i < this.blocks.length; i++) {
-            let block = this.blocks[i];
+            const block = this.blocks[i];
 
             context.beginPath();
             context.lineWidth = 1;
@@ -94,19 +94,19 @@ export default class Draw {
         this.canvasUtil.clear();
         this.resetBlocks();
 
-        let context = this.canvasUtil.context;
-        let colorConfig = this.config.COLOR;
-        let radius = this.config.RAY.width;
+        const context = this.canvasUtil.context;
+        const colorConfig = this.config.COLOR;
+        const radius = this.config.RAY.width;
 
         context.fillStyle = "#000000";
         context.fillRect(0, 0, this.canvasUtil.width, this.canvasUtil.height);
 
-        let angle = 180;
+        const angle = 180;
         let curAngle = angle - 360 / 2;
-        let addTo = 1 / radius;
+        const addTo = 1 / radius;
         for (curAngle; curAngle < angle + curAngle / 2; curAngle += addTo * (180 / Math.PI) * 2) {
-            let rayEndPoint = new Point(null, null);
-            let ray = new Ray(this.mousePos, rayEndPoint, curAngle, radius);
+            const rayEndPoint = new Point(null, null);
+            const ray = new Ray(this.mousePos, rayEndPoint, curAngle, radius);
 
             this.calculateRayPoint(ray);
 
@@ -123,22 +123,22 @@ export default class Draw {
     }
 
     calculateRayPoint(ray) {
-        let context = this.canvasUtil.context;
+        const context = this.canvasUtil.context;
 
-        let rayStartX = ray.startPoint.x;
-        let rayStartY = ray.startPoint.y;
-        let radian = ray.radian;
-        let radius = ray.width;
+        const rayStartX = ray.startPoint.x;
+        const rayStartY = ray.startPoint.y;
+        const radian = ray.radian;
+        const radius = ray.width;
 
         let rayEndX = rayStartX + ray.width * Math.cos(radian);
         let rayEndY = rayStartY + ray.width * Math.sin(radian);
         ray.endPoint.x = rayEndX;
         ray.endPoint.y = rayEndY;
 
-        let rayAreaBlock = getRayAreaBlock(ray);
-        let intersectBlocks = [];
+        const rayAreaBlock = getRayAreaBlock(ray);
+        const intersectBlocks = [];
         for (let i = 0; i < this.blocks.length; i++) {
-            let block = this.blocks[i];
+            const block = this.blocks[i];
 
             if (isIntersectionBlocks(rayAreaBlock, block)) {
                 intersectBlocks.push(block);
@@ -149,9 +149,9 @@ export default class Draw {
             return;
         }
 
-        let rayLinePoints = rayPoints(ray).reverse();
+        const rayLinePoints = rayPoints(ray).reverse();
 
-        let visibleBlocks = [];
+        const visibleBlocks = [];
         let isStartPointInsideBlock = false;
         let distanceToClosestIntersectionBlock = 0;
 
@@ -193,14 +193,14 @@ export default class Draw {
 
                 distanceToClosestIntersectionBlock = distance;
 
-                let newRayEndX = rayEndX + Math.cos(radian) * distance;
-                let newRayEndY = rayEndY + Math.sin(radian) * distance;
+                const newRayEndX = rayEndX + Math.cos(radian) * distance;
+                const newRayEndY = rayEndY + Math.sin(radian) * distance;
 
-                let rayLineBeforeBlockTouchPoints = radianPoints({x: rayEndX, y: rayEndY}, radian, distance);
+                const rayLineBeforeBlockTouchPoints = radianPoints({x: rayEndX, y: rayEndY}, radian, distance);
                 let latsPointInsideBlock = null;
 
                 for (let i = 0; i < rayLineBeforeBlockTouchPoints.length; i++) {
-                    let point = rayLineBeforeBlockTouchPoints[i];
+                    const point = rayLineBeforeBlockTouchPoints[i];
                     if (context.isPointInPath(point.x, point.y)) {
                         latsPointInsideBlock = point;
                     } else if (latsPointInsideBlock !== null) {
@@ -218,8 +218,8 @@ export default class Draw {
                 }
             }
 
-            let actualRayEndX = ray.endPoint.x;
-            let actualRayEndY = ray.endPoint.y;
+            const actualRayEndX = ray.endPoint.x;
+            const actualRayEndY = ray.endPoint.y;
             let actualDistanceTouchBlock;
             let newDistanceTouchBlock;
 

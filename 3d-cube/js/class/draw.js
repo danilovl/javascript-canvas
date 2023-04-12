@@ -56,20 +56,20 @@ export default class Draw {
     startDrawing() {
         this.canvasUtil.clear();
 
-        let context = this.canvasUtil.context;
-        let quadrangles = this.cube.quadrangles;
+        const context = this.canvasUtil.context;
+        const quadrangles = this.cube.quadrangles;
 
         for (let i = 0; i < quadrangles.length; i++) {
-            let quadrangle = quadrangles[i];
-            let points = quadrangle.points;
+            const quadrangle = quadrangles[i];
+            const points = quadrangle.points;
 
-            let startPoint = points[0];
+            const startPoint = points[0];
 
             context.beginPath();
             context.moveTo(startPoint.x, startPoint.y);
 
             for (let j = 1; j < points.length; j++) {
-                let nextPoint = points[j];
+                const nextPoint = points[j];
                 context.lineTo(nextPoint.x, nextPoint.y);
             }
 
@@ -86,16 +86,16 @@ export default class Draw {
             return;
         }
 
-        let cube = this.cube;
-        let theta = (this.lastMousePos.x - this.mousePos.x) * Math.PI / 720;
-        let phi = (this.lastMousePos.y - this.mousePos.y) * Math.PI / 720;
+        const cube = this.cube;
+        const theta = (this.lastMousePos.x - this.mousePos.x) * Math.PI / 720;
+        const phi = (this.lastMousePos.y - this.mousePos.y) * Math.PI / 720;
 
         for (let j = 0; j < cube.quadrangles.length; j++) {
-            let quadrangles = cube.quadrangles[j];
-            let points = quadrangles.points;
+            const quadrangles = cube.quadrangles[j];
+            const points = quadrangles.points;
 
             for (let k = 0; k < points.length; k++) {
-                let point = points[k];
+                const point = points[k];
                 rotatePoint(cube, point, theta, phi);
             }
         }

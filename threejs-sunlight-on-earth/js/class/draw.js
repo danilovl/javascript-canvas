@@ -64,7 +64,7 @@ export default class Draw {
     }
 
     getSunLight() {
-        let sunLight = new THREE.PointLight('#ffed7a', 1);
+        const sunLight = new THREE.PointLight('#ffed7a', 1);
         sunLight.position.x = 450;
         sunLight.position.y = 0;
         sunLight.position.z = -450;
@@ -73,17 +73,17 @@ export default class Draw {
     }
 
     getGeneralShadeLight() {
-        let generalShadeLight = new THREE.PointLight('#0000FF', .4);
+        const generalShadeLight = new THREE.PointLight('#0000FF', .4);
         generalShadeLight.position.z = 400;
 
         return generalShadeLight;
     }
 
     getEarthMesh() {
-        let earthMaterial = new THREE.MeshPhongMaterial();
+        const earthMaterial = new THREE.MeshPhongMaterial();
         earthMaterial.map = THREE.ImageUtils.loadTexture('image/earth.jpg');
 
-        let earthGeometry = new THREE.SphereGeometry(50, 32, 32);
+        const earthGeometry = new THREE.SphereGeometry(50, 32, 32);
 
         return new THREE.Mesh(earthGeometry, earthMaterial);
     }
@@ -128,14 +128,14 @@ export default class Draw {
     }
 
     rotateMeshY(object, radians) {
-        let x = object.position.x;
+        const x = object.position.x;
 
         object.position.x = (x * Math.cos(radians)) + (object.position.z * Math.sin(radians) * -1.0);
         object.position.z = (x * Math.sin(radians)) + (object.position.z * Math.cos(radians));
     }
 
     rotateMeshZ(object, radians) {
-        let x = object.position.x;
+        const x = object.position.x;
 
         object.position.x = (x * Math.cos(radians)) - (object.position.y * Math.sin(radians) * -1.0);
         object.position.y = (x * Math.sin(radians)) - (object.position.y * Math.cos(radians));

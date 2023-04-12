@@ -44,15 +44,15 @@ export default class Draw {
         this.particles = [];
 
         let id = 0;
-        let count = this.config.PARTICLE.numParticles;
+        const count = this.config.PARTICLE.numParticles;
 
         while (id < count) {
-            let x = arrayRandomBetween(0, this.canvasUtil.canvas.width);
-            let y = arrayRandomBetween(0, this.canvasUtil.canvas.height);
-            let radius = arrayRandomBetween(this.config.CIRCLE_RADIUS.min, this.config.CIRCLE_RADIUS.max);
+            const x = arrayRandomBetween(0, this.canvasUtil.canvas.width);
+            const y = arrayRandomBetween(0, this.canvasUtil.canvas.height);
+            const radius = arrayRandomBetween(this.config.CIRCLE_RADIUS.min, this.config.CIRCLE_RADIUS.max);
 
-            let point = new Point(x, y, radius);
-            let particle = new Particle(id, this.canvasUtil, point, this.config.PARTICLE.maxSpeed);
+            const point = new Point(x, y, radius);
+            const particle = new Particle(id, this.canvasUtil, point, this.config.PARTICLE.maxSpeed);
 
             this.particles.push(particle);
 
@@ -65,15 +65,15 @@ export default class Draw {
         this.canvasUtil.clear();
 
         let id = 0;
-        let distanceConfig = this.config.DISTANCE_COEFFICIENT;
-        let increaseByRadius = distanceConfig.increaseByRadius;
-        let increaseByRadiusLineWidth = distanceConfig.increaseByRadiusLineWidth;
+        const distanceConfig = this.config.DISTANCE_COEFFICIENT;
+        const increaseByRadius = distanceConfig.increaseByRadius;
+        const increaseByRadiusLineWidth = distanceConfig.increaseByRadiusLineWidth;
 
-        let count = this.config.PARTICLE.numParticles;
-        let width = this.canvasUtil.canvas.width;
+        const count = this.config.PARTICLE.numParticles;
+        const width = this.canvasUtil.canvas.width;
 
         while (id < count) {
-            let particle = this.particles[id];
+            const particle = this.particles[id];
             particle.move();
 
             drawCirclePoint(this.canvasUtil.context, particle.point, this.config.COLOR.circle)
@@ -81,7 +81,7 @@ export default class Draw {
             if (this.mousePos !== null) {
                 let distanceMouse = particle.distanceToPoint(this.mousePos);
                 if (distanceMouse <= width * distanceConfig.toMouse) {
-                    let lineWidth = this.config.PARTICLE.defaultLineWidth + (particle.point.radius * increaseByRadiusLineWidth);
+                    const lineWidth = this.config.PARTICLE.defaultLineWidth + (particle.point.radius * increaseByRadiusLineWidth);
 
                     drawLineBetweenPoints(
                         this.canvasUtil.context,
@@ -94,12 +94,12 @@ export default class Draw {
             }
 
             for (let i = 0; i < count; i++) {
-                let nearParticle = this.particles[i];
-                let distance = nearParticle.distanceToPoint(particle.point);
-                let distanceCoefficient = distanceConfig.toPoint + (particle.point.radius * increaseByRadius);
+                const nearParticle = this.particles[i];
+                const distance = nearParticle.distanceToPoint(particle.point);
+                const distanceCoefficient = distanceConfig.toPoint + (particle.point.radius * increaseByRadius);
 
                 if (particle.id !== nearParticle.id && distance <= width * distanceCoefficient) {
-                    let lineWidth = this.config.PARTICLE.defaultLineWidth + (particle.point.radius * increaseByRadiusLineWidth);
+                    const lineWidth = this.config.PARTICLE.defaultLineWidth + (particle.point.radius * increaseByRadiusLineWidth);
                     drawLineBetweenPoints(
                         this.canvasUtil.context,
                         particle.point,

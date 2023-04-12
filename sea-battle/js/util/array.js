@@ -3,7 +3,7 @@ export function arrayRemoveByValue(arr, value) {
 }
 
 export function arrayRandomItem(items) {
-    let number = Math.floor(Math.random() * items.length);
+    const number = Math.floor(Math.random() * items.length);
 
     return items[number];
 }
@@ -38,7 +38,7 @@ export function arrayFindIndexPointShips(point, ships) {
 
 export function isPointIntersects(firstPoints, secondPoint) {
     for (let i = 0; i < firstPoints.length; i++) {
-        let point = firstPoints[i];
+        const point = firstPoints[i];
 
         if (arrayFindIndexPoint(point, secondPoint) !== -1) {
             return true;

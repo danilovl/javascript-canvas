@@ -3,14 +3,14 @@ export function rayPoints(ray) {
 }
 
 export function radianPoints(startPoint, radian, width) {
-    let coordinatesArray = [];
+    const coordinatesArray = [];
 
-    let centerX = startPoint.x;
-    let centerY = startPoint.y;
+    const centerX = startPoint.x;
+    const centerY = startPoint.y;
 
     for (let i = 0; i < width; i++) {
-        let x = centerX + i * Math.cos(radian);
-        let y = centerY + i * Math.sin(radian);
+        const x = centerX + i * Math.cos(radian);
+        const y = centerY + i * Math.sin(radian);
 
         coordinatesArray.push({x: x, y: y});
     }

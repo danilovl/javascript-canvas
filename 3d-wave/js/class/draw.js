@@ -61,12 +61,12 @@ export default class Draw {
 
     initSquares() {
         this.squares = [];
-        let gridDepth = 1 / this.rows;
+        const gridDepth = 1 / this.rows;
 
         for (let col = 0; col < this.cols; col++) {
             for (let row = this.rows; row > 0; row--) {
                 let point;
-                let points = [];
+                const points = [];
 
                 point = new Point(
                     col * this.gridWidth - this.increaseOffsetX,
@@ -96,17 +96,17 @@ export default class Draw {
                 );
                 points.push(point);
 
-                let square = new Square(points);
+                const square = new Square(points);
                 this.squares.push(square);
             }
         }
     }
 
     removeInvisibleTriangles(square) {
-        let waveHeight = this.config.WAVE.waveHeight;
-        let vertices = square.vertices;
+        const waveHeight = this.config.WAVE.waveHeight;
+        const vertices = square.vertices;
         for (let i = 0; i < vertices.length; i++) {
-            let point = vertices[i];
+            const point = vertices[i];
             if (point.x > -waveHeight && point.x < this.canvasUtil.width + waveHeight && point.y > -waveHeight && point.y < this.canvasUtil.height + waveHeight) {
                 return false;
             }
@@ -117,26 +117,26 @@ export default class Draw {
 
     addNoise(offsetX, offsetY) {
         for (let m = 0; m < this.squares.length; m++) {
-            let vertices = this.squares[m].vertices;
+            const vertices = this.squares[m].vertices;
             for (let p = 0; p < vertices.length; p++) {
-                let noiseX = vertices[p].x / 200 + offsetX;
-                let noiseY = vertices[p].y / 50 + offsetY;
+                const noiseX = vertices[p].x / 200 + offsetX;
+                const noiseY = vertices[p].y / 50 + offsetY;
                 vertices[p].y = vertices[p].y + this.waveHeight * this.noise.get(noiseX, noiseY);
             }
         }
     }
 
     transformGrid() {
-        let removeIndexes = [];
+        const removeIndexes = [];
 
         for (let m = 0; m < this.squares.length; m++) {
-            let vertices = this.squares[m].vertices;
+            const vertices = this.squares[m].vertices;
             for (let p = 0; p < vertices.length; p++) {
-                let point = vertices[p];
+                const point = vertices[p];
                 point.resetToOrigin();
 
-                let scaleX = 4 * point.z;
-                let scaleY = 0.5 * point.z;
+                const scaleX = 4 * point.z;
+                const scaleY = 0.5 * point.z;
 
                 point.x = (point.x * scaleX) + this.increaseCanvasWidth / 4;
                 point.y = (point.y * scaleY) + this.increaseCanvasHeight / 1.5;
@@ -168,11 +168,11 @@ export default class Draw {
         this.transformGrid();
         this.addNoise(this.offsetX, this.offsetY);
 
-        let context = this.canvasUtil.context;
+        const context = this.canvasUtil.context;
         context.strokeStyle = this.config.COLOR.waveStroke;
 
         for (let i = 0; i < this.squares.length; i++) {
-            let left = this.squares[i].getLeftTrianglePoints();
+            const left = this.squares[i].getLeftTrianglePoints();
 
             context.beginPath();
             context.fillStyle = this.config.COLOR.wave;
@@ -186,7 +186,7 @@ export default class Draw {
             context.stroke();
             context.fill();
 
-            let right = this.squares[i].getRightTrianglePoints();
+            const right = this.squares[i].getRightTrianglePoints();
 
             context.beginPath();
             context.moveTo(right[0].x, right[0].y);

@@ -20,7 +20,7 @@ export default class ShipGenerator {
 
     getShips() {
         this.points = generateMatrixPoint()
-        let ships = [];
+        const ships = [];
 
         SHIPS.forEach(configShip => {
             let counter = 0;
@@ -28,12 +28,12 @@ export default class ShipGenerator {
             while (counter < configShip.count) {
                 this.generatePoints = this.points;
 
-                let shipCoordinates = this.getShipCoordinate(configShip.length);
-                let ship = new Ship();
+                const shipCoordinates = this.getShipCoordinate(configShip.length);
+                const ship = new Ship();
 
                 for (let i = 0; i < shipCoordinates.length; i++) {
-                    let chipPoint = shipCoordinates[i];
-                    let shipPoint = new Point(chipPoint.x, chipPoint.y);
+                    const chipPoint = shipCoordinates[i];
+                    const shipPoint = new Point(chipPoint.x, chipPoint.y);
 
                     ship.points.push(shipPoint);
                 }
@@ -47,21 +47,21 @@ export default class ShipGenerator {
     }
 
     getShipCoordinate(length) {
-        let {x: startX, y: startY} = this.generateStartPoint(length);
-        let startPoint = {x: startX, y: startY};
-        let direction = this.getDirection(length, startPoint);
+        const {x: startX, y: startY} = this.generateStartPoint(length);
+        const startPoint = {x: startX, y: startY};
+        const direction = this.getDirection(length, startPoint);
 
         let [endX, endY] = [startX, startY];
         let shipPoints = [];
-        let areaAroundPoints = [];
-        let lengthShip = length - 1;
+        const areaAroundPoints = [];
+        const lengthShip = length - 1;
 
         switch (direction) {
             case DIRECTION.up:
                 endY = endY - lengthShip;
 
                 for (let i = startY; i >= endY; i--) {
-                    let point = {x: startX, y: i};
+                    const point = {x: startX, y: i};
 
                     shipPoints.push(point)
                     getAreaAroundPoint(point).forEach(function (item) {
@@ -74,7 +74,7 @@ export default class ShipGenerator {
                 endY = endY + lengthShip;
 
                 for (let i = startY; i <= endY; i++) {
-                    let point = {x: startX, y: i};
+                    const point = {x: startX, y: i};
 
                     shipPoints.push(point)
                     getAreaAroundPoint(point).forEach(function (item) {
@@ -87,7 +87,7 @@ export default class ShipGenerator {
                 endX = startX - lengthShip;
 
                 for (let i = startX; i >= endX; i--) {
-                    let point = {x: i, y: startY};
+                    const point = {x: i, y: startY};
 
                     shipPoints.push(point)
                     getAreaAroundPoint(point).forEach(function (item) {
@@ -99,7 +99,7 @@ export default class ShipGenerator {
                 endX = startX + lengthShip;
 
                 for (let i = startX; i <= endX; i++) {
-                    let point = {x: i, y: startY};
+                    const point = {x: i, y: startY};
 
                     shipPoints.push(point)
                     getAreaAroundPoint(point).forEach(function (item) {
@@ -114,8 +114,8 @@ export default class ShipGenerator {
 
         let reGetShipCoordinate = false;
         for (let i = 0; i < shipPoints.length; i++) {
-            let shipPoint = shipPoints[i];
-            let index = arrayFindIndexPoint(shipPoint, this.points);
+            const shipPoint = shipPoints[i];
+            const index = arrayFindIndexPoint(shipPoint, this.points);
             if (index !== -1) {
                 continue;
             }
@@ -130,16 +130,16 @@ export default class ShipGenerator {
         }
 
         for (let i = 0; i < shipPoints.length; i++) {
-            let shipPoint = shipPoints[i];
+            const shipPoint = shipPoints[i];
 
-            let index = arrayFindIndexPoint(shipPoint, this.points);
+            const index = arrayFindIndexPoint(shipPoint, this.points);
             this.points = arrayRemoveByIndex(index, this.points)
         }
 
         for (let i = 0; i < areaAroundPoints.length; i++) {
-            let areaAroundPoint = areaAroundPoints[i];
+            const areaAroundPoint = areaAroundPoints[i];
 
-            let index = arrayFindIndexPoint(areaAroundPoint, this.points);
+            const index = arrayFindIndexPoint(areaAroundPoint, this.points);
             this.points = arrayRemoveByIndex(index, this.points)
         }
 
@@ -147,11 +147,11 @@ export default class ShipGenerator {
     }
 
     generateStartPoint(length) {
-        let randomNumber = arrayRandomNumber(this.generatePoints.length);
+        const randomNumber = arrayRandomNumber(this.generatePoints.length);
         let point = this.generatePoints[randomNumber];
 
-        let possibleShips = getPossibleShipsByLength(point, length);
-        let isPossibleShip = possibleShips.some(ship => {
+        const possibleShips = getPossibleShipsByLength(point, length);
+        const isPossibleShip = possibleShips.some(ship => {
             return ship.points.every((point) => {
                 let index = arrayFindIndexPoint(point, this.points);
 
@@ -169,7 +169,7 @@ export default class ShipGenerator {
     }
 
     getDirection(length, startPoint) {
-        let {x: startX, y: startY} = startPoint;
+        const {x: startX, y: startY} = startPoint;
         let variants = [...Object.values(DIRECTION)];
         length = length - 1;
 

@@ -59,7 +59,7 @@ export function getAreaAroundPoint(targetPoint, exceptPoint, includePoint) {
 }
 
 export function getAreaAroundShipPoint(ship) {
-    let aroundPoints = []
+    const aroundPoints = []
 
     for (let i = 0; i < ship.points.length; i++) {
         let shipPoint = ship.points[i];
@@ -75,8 +75,8 @@ export function getTargetSuccessDirectionPoints(successPoints, exceptPoint, incl
     successPoints.sort((a, b) => a.x - b.x);
     successPoints.sort((a, b) => a.y - b.y);
 
-    let firstPoint = successPoints[0];
-    let lastPoint = successPoints[successPoints.length - 1];
+    const firstPoint = successPoints[0];
+    const lastPoint = successPoints[successPoints.length - 1];
 
     if (firstPoint.x === lastPoint.x) {
         points.push({x: firstPoint.x, y: firstPoint.y - 1})
@@ -104,7 +104,7 @@ export function getTargetSuccessDirectionPoints(successPoints, exceptPoint, incl
 }
 
 export function generateMatrixPoint() {
-    let points = []
+    const points = []
 
     for (let x = 1; x <= 10; x++) {
         for (let y = 1; y <= 10; y++) {
@@ -119,8 +119,8 @@ export function generateMatrixPoint() {
 }
 
 export function moveShipPoints(oldPoint, newPoint, ship) {
-    let newShip = ship.clone();
-    let position = newShip.getPositionName();
+    const newShip = ship.clone();
+    const position = newShip.getPositionName();
 
     if (position === POSITION.vertical) {
         for (let i = 0; i < newShip.points.length; i++) {
@@ -144,19 +144,19 @@ export function moveShipPoints(oldPoint, newPoint, ship) {
 
     if (position === POSITION.horizontal) {
         for (let i = 0; i < newShip.points.length; i++) {
-            let point = newShip.points[i];
+            const point = newShip.points[i];
             point.y = newPoint.y
         }
 
         if (newPoint.x !== oldPoint.x) {
             if (newPoint.x > oldPoint.x) {
                 for (let i = 0; i < newShip.points.length; i++) {
-                    let point = newShip.points[i];
+                    const point = newShip.points[i];
                     point.x = point.x + (newPoint.x - oldPoint.x);
                 }
             } else {
                 for (let i = 0; i < newShip.points.length; i++) {
-                    let point = newShip.points[i];
+                    const point = newShip.points[i];
                     point.x = point.x - (oldPoint.x - newPoint.x);
                 }
             }
@@ -165,7 +165,7 @@ export function moveShipPoints(oldPoint, newPoint, ship) {
 
     if (position === POSITION.both) {
         for (let i = 0; i < newShip.points.length; i++) {
-            let point = newShip.points[i];
+            const point = newShip.points[i];
 
             point.x = newPoint.x
             point.y = newPoint.y
@@ -178,14 +178,14 @@ export function moveShipPoints(oldPoint, newPoint, ship) {
 }
 
 export function flipShipPoints(clickPoint, ship) {
-    let newShip = ship.clone();
+    const newShip = ship.clone();
     sortPoints(newShip.points);
-    let position = newShip.getPositionName();
+    const position = newShip.getPositionName();
 
     if (position === POSITION.vertical) {
         let index = arrayFindIndexPoint(clickPoint, newShip.points);
         for (let i = 0; i < newShip.points.length; i++) {
-            let point = newShip.points[i];
+            const point = newShip.points[i];
             if (point.isEqual(clickPoint)) {
                 index = 1;
 
@@ -207,7 +207,7 @@ export function flipShipPoints(clickPoint, ship) {
     if (position === POSITION.horizontal) {
         let index = arrayFindIndexPoint(clickPoint, newShip.points);
         for (let i = 0; i < newShip.points.length; i++) {
-            let point = newShip.points[i];
+            const point = newShip.points[i];
             if (point.isEqual(clickPoint)) {
                 index = 1;
 
@@ -226,7 +226,7 @@ export function flipShipPoints(clickPoint, ship) {
         }
     }
 
-    let isOutside = newShip.points.some(point => isPointOutside(point))
+    const isOutside = newShip.points.some(point => isPointOutside(point))
 
     return isOutside ? ship : newShip;
 }
@@ -236,15 +236,15 @@ export function isPointOutside(point) {
 }
 
 export function getPossibleShipPointsByLengthDirection(startPoint, length, direction) {
-    let {x: startX, y: startY} = startPoint;
-    let points = [];
+    const {x: startX, y: startY} = startPoint;
+    const points = [];
     length--;
 
     switch (direction) {
         case DIRECTION.up:
-            let lengthUp = startY - length;
+            const lengthUp = startY - length;
             for (let i = startY; i >= lengthUp; i--) {
-                let point = {x: startX, y: i};
+                const point = {x: startX, y: i};
                 if (isPointOutside(point)) {
                     return null;
                 }
@@ -254,9 +254,9 @@ export function getPossibleShipPointsByLengthDirection(startPoint, length, direc
 
             break;
         case DIRECTION.down:
-            let lengthDown = startY + length;
+            const lengthDown = startY + length;
             for (let i = startY; i <= lengthDown; i++) {
-                let point = {x: startX, y: i};
+                const point = {x: startX, y: i};
                 if (isPointOutside(point)) {
                     return null;
                 }
@@ -266,9 +266,9 @@ export function getPossibleShipPointsByLengthDirection(startPoint, length, direc
 
             break;
         case DIRECTION.left:
-            let lengthLeft = startX - length;
+            const lengthLeft = startX - length;
             for (let i = startX; i >= lengthLeft; i--) {
-                let point = {x: i, y: startY};
+                const point = {x: i, y: startY};
                 if (isPointOutside(point)) {
                     return null;
                 }
@@ -277,9 +277,9 @@ export function getPossibleShipPointsByLengthDirection(startPoint, length, direc
             }
             break;
         case DIRECTION.right:
-            let lengthRight = startX + length;
+            const lengthRight = startX + length;
             for (let i = startX; i <= lengthRight; i++) {
-                let point = {x: i, y: startY};
+                const point = {x: i, y: startY};
                 if (isPointOutside(point)) {
                     return null;
                 }
@@ -295,7 +295,7 @@ export function getPossibleShipPointsByLengthDirection(startPoint, length, direc
 
 export function getPossibleShipsByLength(startPoint, length) {
     let shipPoints
-    let shipsPoints = []
+    const shipsPoints = []
 
     shipPoints = getPossibleShipPointsByLengthDirection(startPoint, length, DIRECTION.up);
     if (startPoint !== null) {

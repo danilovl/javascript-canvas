@@ -60,8 +60,8 @@ export default class GameController {
 
         this.shipPositionMove.destroy();
 
-        let mousePos = getMousePos(this.playerTwoCanvas.canvas, evt);
-        let point = coordsToCell(mousePos.x, mousePos.y);
+        const mousePos = getMousePos(this.playerTwoCanvas.canvas, evt);
+        const point = coordsToCell(mousePos.x, mousePos.y);
 
         this.game.fire(point)
     }
@@ -76,11 +76,11 @@ export default class GameController {
 
         this.drawPlayingFields();
 
-        let playerOneShips = (new ShipGenerator()).getShips();
-        let playerTwoShips = (new ShipGenerator()).getShips();
+        const playerOneShips = (new ShipGenerator()).getShips();
+        const playerTwoShips = (new ShipGenerator()).getShips();
 
-        let playerOne = new Player(1, this.playerOneCanvas, this.playerOneCountShipInfoCanvas, playerOneShips);
-        let playerTwo = new Player(2, this.playerTwoCanvas, this.playerTwoCountShipInfoCanvas, playerTwoShips);
+        const playerOne = new Player(1, this.playerOneCanvas, this.playerOneCountShipInfoCanvas, playerOneShips);
+        const playerTwo = new Player(2, this.playerTwoCanvas, this.playerTwoCountShipInfoCanvas, playerTwoShips);
 
         this.game = new Game(playerOne, playerTwo)
 

@@ -10,7 +10,7 @@ export default class Bot {
     }
 
     fire() {
-        let point = this.getPoint();
+        const point = this.getPoint();
         this.playerOne.fire(point)
 
         if (this.playerOne.isLastHitSucces) {
@@ -31,27 +31,25 @@ export default class Bot {
     }
 
     getPredictablePoint() {
-        let point;
+        const index = this.infoDataShips.findIndex(item => item.length === 1);
+        const isOneLengthAliveShip = this.infoDataShips[index].count > 0;
 
-        let index = this.infoDataShips.findIndex(item => item.length === 1);
-        let isOneLengthAliveShip = this.infoDataShips[index].count > 0;
-
-        point = arrayRandomItem(this.predictablePlayerOnePoints);
+        let point = arrayRandomItem(this.predictablePlayerOnePoints);
         if (!isOneLengthAliveShip) {
-            let aliveShips = this.infoDataShips.filter(item => item.count > 0)
+            const aliveShips = this.infoDataShips.filter(item => item.count > 0)
             let possibleVariationShips = [];
 
             aliveShips.forEach(function (item) {
-                let possibleShips = getPossibleShipsByLength(point, item.length);
+                const possibleShips = getPossibleShipsByLength(point, item.length);
                 if (possibleShips !== null) {
                     possibleVariationShips.push(...possibleShips);
                 }
             });
 
             let predictablePlayerOnePoints = this.predictablePlayerOnePoints;
-            let removeVariationShips = [];
+            const removeVariationShips = [];
             possibleVariationShips = possibleVariationShips.filter((ship) => {
-                let isShipPointNotFound = ship.points.some(point => arrayFindIndexPoint(point, predictablePlayerOnePoints) === -1);
+                const isShipPointNotFound = ship.points.some(point => arrayFindIndexPoint(point, predictablePlayerOnePoints) === -1);
                 if (isShipPointNotFound) {
                     removeVariationShips.push(ship);
                 }
@@ -62,7 +60,7 @@ export default class Bot {
             if (removeVariationShips.length > 0) {
                 removeVariationShips.forEach(ship => {
                     ship.points.forEach(point => {
-                        let index = arrayFindIndexPoint(point, predictablePlayerOnePoints);
+                        const index = arrayFindIndexPoint(point, predictablePlayerOnePoints);
                         predictablePlayerOnePoints = arrayRemoveByIndex(index, predictablePlayerOnePoints)
                     })
                 })
@@ -77,7 +75,7 @@ export default class Bot {
     }
 
     getNextSuccessPoint() {
-        let aroundSuccessPoints = getTargetSuccessDirectionPoints(this.successPoint, null, this.playerOne.points)
+        const aroundSuccessPoints = getTargetSuccessDirectionPoints(this.successPoint, null, this.playerOne.points)
         if (aroundSuccessPoints.length === 0) {
             return arrayRandomItem(this.playerOne.points);
         }

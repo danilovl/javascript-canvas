@@ -36,18 +36,18 @@ export default class Player {
             return;
         }
 
-        let index = arrayFindIndexPoint(point, this.points);
+        const index = arrayFindIndexPoint(point, this.points);
         this.points = arrayRemoveByIndex(index, this.points)
     }
 
     isPointAlreadyHit(point) {
-        let index = arrayFindIndexPoint(point, this.points);
+        const index = arrayFindIndexPoint(point, this.points);
 
         return index === -1;
     }
 
     tryHitShip(point) {
-        let aliveShips = this.getAliveShip();
+        const aliveShips = this.getAliveShip();
         let isSuccessFire = false;
         let shipHit = null;
 
@@ -56,7 +56,7 @@ export default class Player {
                 break;
             }
 
-            let ship = aliveShips[i];
+            const ship = aliveShips[i];
             isSuccessFire = ship.fire(point);
 
             if (!isSuccessFire) {
@@ -75,12 +75,12 @@ export default class Player {
             this.reduceAliveShips(ship);
 
             for (let p = 0; p < ship.points.length; p++) {
-                let shipPoint = ship.points[p];
+                const shipPoint = ship.points[p];
 
-                let that = this;
-                let getAreaAroundPoints = getAreaAroundPoint(shipPoint, ship.points);
+                const that = this;
+                const getAreaAroundPoints = getAreaAroundPoint(shipPoint, ship.points);
 
-                getAreaAroundPoints.forEach(function (point) {
+                getAreaAroundPoints.forEach(point => {
                     highlightPlayingCell(that.canvas.context, point.x, point.y, COLOR.miss, DIM);
                     that.removePoint(point);
                 });
@@ -104,7 +104,7 @@ export default class Player {
     }
 
     getAllShipPoints() {
-        let points = []
+        const points = []
         this.ships.forEach(ship => {
             points.push(...ship.points);
         })
@@ -113,7 +113,7 @@ export default class Player {
     }
 
     reduceAliveShips(ship) {
-        let index = this.infoDataShips.findIndex(item => item.length === ship.points.length);
+        const index = this.infoDataShips.findIndex(item => item.length === ship.points.length);
         let count = this.infoDataShips[index].count;
 
         this.infoDataShips[index].count = --count;

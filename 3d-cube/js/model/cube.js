@@ -13,7 +13,7 @@ export default class Cube {
     }
 
     generatePoints() {
-        let vertices = [
+        const vertices = [
             new Point(this.x - this.side, this.y - this.side, this.z + this.side),
             new Point(this.x - this.side, this.y - this.side, this.z - this.side),
             new Point(this.x + this.side, this.y - this.side, this.z - this.side),
@@ -24,7 +24,7 @@ export default class Cube {
             new Point(this.x - this.side, this.y + this.side, this.z + this.side)
         ];
 
-        let quadranglesPoints = [
+        const quadranglesPoints = [
             [vertices[0], vertices[1], vertices[2], vertices[3]],
             [vertices[3], vertices[2], vertices[5], vertices[4]],
             [vertices[4], vertices[5], vertices[6], vertices[7]],
@@ -34,15 +34,15 @@ export default class Cube {
         ];
 
         for (let i = 0; i < quadranglesPoints.length; i++) {
-            let quadrangle = new Quadrangle(this.randomColor(), quadranglesPoints[i]);
+            const quadrangle = new Quadrangle(this.randomColor(), quadranglesPoints[i]);
             this.quadrangles.push(quadrangle);
         }
     }
 
     randomColor() {
-        let r = Math.floor(Math.random() * 256);
-        let g = Math.floor(Math.random() * 256);
-        let b = Math.floor(Math.random() * 256);
+        const r = Math.floor(Math.random() * 256);
+        const g = Math.floor(Math.random() * 256);
+        const b = Math.floor(Math.random() * 256);
 
         return `rgb(${r}, ${g}, ${b}, 1)`;
     }

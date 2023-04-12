@@ -1,5 +1,5 @@
 export function getMousePos(canvas, evt) {
-    let rect = canvas.getBoundingClientRect();
+    const rect = canvas.getBoundingClientRect();
 
     return {
         x: evt.clientX - rect.left,

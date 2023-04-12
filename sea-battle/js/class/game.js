@@ -24,7 +24,7 @@ export default class Game {
             return;
         }
 
-        let isPointAlreadyHit = this.playerTwo.isPointAlreadyHit(point);
+        const isPointAlreadyHit = this.playerTwo.isPointAlreadyHit(point);
         if (isPointAlreadyHit === true) {
             return;
         }
@@ -72,8 +72,8 @@ export default class Game {
     }
 
     drawActiveBorder() {
-        let active = this.movePlayer.id === this.playerOne.id ? this.playerTwo : this.playerOne;
-        let notActive = this.movePlayer.id === this.playerOne.id ? this.playerOne : this.playerTwo;
+        const active = this.movePlayer.id === this.playerOne.id ? this.playerTwo : this.playerOne;
+        const notActive = this.movePlayer.id === this.playerOne.id ? this.playerOne : this.playerTwo;
 
         drawBorderPlayingField(active.canvas.context, DIM, COLOR.activeBorderCanvas)
         drawBorderPlayingField(notActive.canvas.context, DIM, COLOR.borderCanvas)
@@ -84,8 +84,8 @@ export default class Game {
             return;
         }
 
-        let winner = this.winnerPlayer.id === this.playerOne.id ? this.playerOne : this.playerTwo;
-        let loser = this.winnerPlayer.id === this.playerOne.id ? this.playerOne : this.playerTwo;
+        const winner = this.winnerPlayer.id === this.playerOne.id ? this.playerOne : this.playerTwo;
+        const loser = this.winnerPlayer.id === this.playerOne.id ? this.playerOne : this.playerTwo;
 
         drawBorderPlayingField(winner.canvas.context, DIM, COLOR.winner)
         drawBorderPlayingField(loser.canvas.context, DIM, COLOR.loser)
@@ -100,7 +100,7 @@ export default class Game {
         player.canvasShips.clear();
         this.drawPlayerCountShipInfoCell(player);
 
-        let dim = 30;
+        const dim = 30;
         let y = 1;
         player.infoDataShips.forEach(configShip => {
             let counter = 0;
