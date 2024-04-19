@@ -4,7 +4,7 @@
 
 Three.js sunlight on earth example animation.
 
-![Alt text](/threejs-sunlight-on-earth/git/example.png?raw=true)
+![Alt text](/src/threejs-sunlight-on-earth/git/example.png?raw=true)
 
 ## Author ###  
 

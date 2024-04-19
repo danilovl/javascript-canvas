@@ -6,7 +6,7 @@ Simple 2d dynamic lighting simulation.
 
 Move your mouse to change light center coordinates.
 
-![Alt text](/2d-dynamic-lighting/git/2d-dynamic-lighting.png?raw=true)
+![Alt text](/src/2d-dynamic-lighting/git/2d-dynamic-lighting.png?raw=true)
 
 ## Author ###  
 

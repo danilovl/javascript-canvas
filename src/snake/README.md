@@ -4,7 +4,7 @@
 
 Move the snake around with the arrow keys, eat the red dots to grow bigger, and avoid hitting your own tail.
 
-![Alt text](/snake/git/snake-screen.png?raw=true)
+![Alt text](/src/snake/git/snake-screen.png?raw=true)
  
 ## Author ###  
 

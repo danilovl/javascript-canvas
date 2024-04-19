@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: ./
+      dockerfile: ../../git/javascript-canvas/docker/nginx/Dockerfile
+    volumes:
+      - ./docker/config/default.conf:/etc/nginx/conf.d/default.conf
+      - ./src:/usr/share/nginx/html
+    ports:
+      - '8091:80'

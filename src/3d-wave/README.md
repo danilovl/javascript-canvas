@@ -4,7 +4,7 @@
 
 Simple 3D wave animation.
 
-![Alt text](/3d-wave/git/wave-screen.png?raw=true)
+![Alt text](/src/3d-wave/git/wave-screen.png?raw=true)
 
 ## Author ###  
 
