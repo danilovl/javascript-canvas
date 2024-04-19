@@ -6,6 +6,6 @@ Move the snake around with the arrow keys, eat the red dots to grow bigger, and 
 
 ![Alt text](/src/snake/git/snake-screen.png?raw=true)
  
-## Author ###  
+## License
 
-Created by [Vladimir Danilov](https://github.com/danilovl)
+Open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

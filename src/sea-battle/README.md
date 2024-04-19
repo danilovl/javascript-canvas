@@ -16,6 +16,6 @@ Your opponent will be a simple bot.
 * You can change ship position by drag and drop
 * You can flip(clockwise) ship position by double click
 
-## Author ###  
+## License
 
-Created by [Vladimir Danilov](https://github.com/danilovl)
+Open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

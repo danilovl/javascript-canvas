@@ -7,6 +7,6 @@ You can rotate cube by click and move.
 
 ![Alt text](/src/3d-cube/git/cube-example.png?raw=true)
 
-## Author ###  
+## License
 
-Created by [Vladimir Danilov](https://github.com/danilovl)
+Open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
