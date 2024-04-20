@@ -2,7 +2,7 @@
 
 ## About ##
 
-Particle animation consists of many small particles moving in space.
+Particle animation consists of many small particles moving through space.
 
 ![Alt text](/src/moving-particles/git/moving-particles-screen.png?raw=true)
 

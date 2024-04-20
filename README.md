@@ -16,11 +16,12 @@ More information is available in the examples folders.
 * 2D dynamic simple lighting simulation
 * 3D cube
 * 3D simple wave animation
-* Moving particles animation
-* Sea battle game
-* Three.js sunlight on earth animation
-* Snake game
+* 2D Moving particles animation
+* 2D Sea battle game
+* 3D Three.js sunlight on earth animation
+* 2D Snake game
 * 2D rain
+* 2D moving-particles-collision
 
 ## License
 
