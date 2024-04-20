@@ -5,7 +5,7 @@
 Simple 3D cube.
 You can rotate cube by click and move.
 
-![Alt text](/src/3d-cube/git/cube-example.png?raw=true)
+![Alt text](/src/3d-cube/git/3d-cube.gif?raw=true)
 
 ## License
 
