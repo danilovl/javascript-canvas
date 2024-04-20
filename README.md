@@ -20,7 +20,8 @@ More information is available in the examples folders.
 * Sea battle game
 * Three.js sunlight on earth animation
 * Snake game
+* 2D rain
 
-## Author ###  
+## License
 
-Created by [Vladimir Danilov](https://github.com/danilovl).
+Open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
